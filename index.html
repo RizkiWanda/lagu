@@ -52,8 +52,14 @@ animation:shoot 4s linear infinite;
 }
 
 @keyframes shoot{
-0%{transform:translate(0,0);opacity:1;}
-100%{transform:translate(-600px,400px);opacity:0;}
+0%{
+transform:translate(0,0);
+opacity:1;
+}
+100%{
+transform:translate(-600px,400px);
+opacity:0;
+}
 }
 
 /* KONTAINER */
@@ -89,7 +95,6 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-transition:1s;
 }
 
 /* FOTO */
@@ -133,11 +138,13 @@ font-size:16px;
 cursor:pointer;
 }
 
+/* BOX THR */
+
 .thr{
-background:rgba(0,0,0,0.25);
-padding:12px;
+background:rgba(0,0,0,0.3);
+padding:15px;
 border-radius:12px;
-margin-top:10px;
+margin-top:15px;
 font-size:17px;
 }
 
@@ -146,8 +153,10 @@ font-size:17px;
 
 <body>
 
+<!-- BULAN -->
 <div class="moon"></div>
 
+<!-- BINTANG -->
 <div class="star" style="top:80px; left:80%"></div>
 <div class="star" style="top:150px; left:60%; animation-delay:1s"></div>
 <div class="star" style="top:220px; left:70%; animation-delay:2s"></div>
@@ -232,33 +241,41 @@ Minimal 10k maksimal bebas 😆
 
 </div>
 
+<!-- AUDIO LAGU -->
+<audio id="lagu" loop>
+<source src="takbiran.mp3" type="audio/mpeg">
+</audio>
+
 <script>
 
-/* PINDAH HALAMAN */
+/* PINDAH HALAMAN + MULAI LAGU */
 
 function next1(){
 
-document.getElementById("page1").classList.add("hidden")
-document.getElementById("page2").classList.remove("hidden")
+let lagu = document.getElementById("lagu");
+lagu.play();
+
+document.getElementById("page1").classList.add("hidden");
+document.getElementById("page2").classList.remove("hidden");
 
 }
 
 function next2(){
 
-document.getElementById("page2").classList.add("hidden")
-document.getElementById("page3").classList.remove("hidden")
+document.getElementById("page2").classList.add("hidden");
+document.getElementById("page3").classList.remove("hidden");
 
 }
 
 /* NAMA OTOMATIS */
 
-const params=new URLSearchParams(window.location.search)
+const params=new URLSearchParams(window.location.search);
 
-let nama=params.get("nama")
+let nama=params.get("nama");
 
 if(nama){
 
-document.getElementById("penerima").innerText="Untuk "+nama
+document.getElementById("penerima").innerText="Untuk "+nama;
 
 }
 
