@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kartu Idul Fitri</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(#02243c,#0b5c4a);
+color:white;
+text-align:center;
+}
+
+.container{
+max-width:400px;
+margin:auto;
+padding:20px;
+}
+
+.card{
+background:rgba(255,255,255,0.1);
+padding:25px;
+border-radius:20px;
+}
+
+h1{
+font-size:30px;
+}
+
+p{
+font-size:18px;
+}
+
+img{
+width:100%;
+border-radius:15px;
+margin:15px 0;
+}
+
+.thr{
+background:rgba(0,0,0,0.2);
+padding:10px;
+border-radius:10px;
+margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h1>🌙 Selamat Hari Raya</h1>
+
+<h2 id="nama">Untuk Anda</h2>
+
+<img src="foto-keluarga.jpg">
+
+<p>
+Kami sekeluarga mengucapkan  
+Selamat Hari Raya Idul Fitri  
+Mohon Maaf Lahir dan Batin 🙏
+</p>
+
+<div class="thr">
+
+😄 Kalau mau kirim THR boleh juga  
+
+<br><br>
+
+💳 Rekening BCA  
+<br>
+123456789
+
+<br><br>
+
+📱 DANA  
+<br>
+08123456789
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const params=new URLSearchParams(window.location.search)
+
+let nama=params.get("nama")
+
+if(nama){
+
+document.getElementById("nama").innerText="Untuk "+nama
+
+}
+
+</script>
+
+</body>
+</html>
