@@ -69,7 +69,6 @@ display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
-perspective:1200px;
 padding:10px;
 }
 
@@ -99,6 +98,21 @@ align-items:center;
 transition:1s;
 }
 
+/* FOTO VIA CSS */
+
+.foto{
+width:140px;
+height:140px;
+border-radius:20px;
+margin-bottom:15px;
+background-image:url("https://raw.githubusercontent.com/RizkiWanda/lagu/main/foto.png");
+background-size:cover;
+background-position:center;
+box-shadow:0 0 15px rgba(255,255,255,0.6);
+}
+
+/* TEXT */
+
 .page h1{
 font-size:34px;
 margin-bottom:10px;
@@ -111,17 +125,6 @@ font-size:26px;
 .page p{
 font-size:18px;
 line-height:1.6;
-}
-
-/* FOTO */
-
-.foto{
-width:140px;
-height:140px;
-border-radius:20px;
-object-fit:cover;
-margin-bottom:15px;
-box-shadow:0 0 15px rgba(255,255,255,0.6);
 }
 
 /* HIDDEN */
@@ -141,30 +144,13 @@ font-size:16px;
 cursor:pointer;
 }
 
-/* RESPONSIVE */
-
-@media(max-width:480px){
-
-.page h1{
-font-size:30px;
-}
-
-.page h2{
-font-size:24px;
-}
-
-.page p{
-font-size:17px;
-}
-
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- MUSIK -->
+<!-- LAGU -->
+
 <audio autoplay loop>
 <source src="takbiran.mp3" type="audio/mpeg">
 </audio>
@@ -183,7 +169,7 @@ font-size:17px;
 
 <div class="page" id="page1">
 
-<img src="https://raw.githubusercontent.com/RizkiWanda/lagu/main/foto.png" class="foto">
+<div class="foto"></div>
 
 <h1>🌙 Selamat Hari Raya</h1>
 <h2>Idul Fitri 1447 H</h2>
@@ -225,23 +211,21 @@ Semoga Allah menerima amal ibadah kita
 dan memberikan keberkahan hidup.
 </p>
 
-<p>
-🌙 Eid Mubarak 🌙
-</p>
+<p>🌙 Eid Mubarak 🌙</p>
 
-<p style="margin-top:15px;font-size:16px">
+<p style="margin-top:15px">
 
 Kalau mau kirim THR boleh juga 😆
 
 <br><br>
 
-💳 Rekening BSI :  
-<b>7272461508</b>
+💳 Rekening  
+<b>1234567890</b>
 
 <br><br>
 
-📱 Dana :  
-<b>082273398353</b>
+📱 Dana  
+<b>081234567890</b>
 
 </p>
 
@@ -254,20 +238,14 @@ Kalau mau kirim THR boleh juga 😆
 
 <script>
 
-/* PINDAH HALAMAN */
-
 function next1(){
-
 document.getElementById("page1").classList.add("hidden")
 document.getElementById("page2").classList.remove("hidden")
-
 }
 
 function next2(){
-
 document.getElementById("page2").classList.add("hidden")
 document.getElementById("page3").classList.remove("hidden")
-
 }
 
 /* NAMA OTOMATIS */
@@ -277,14 +255,10 @@ const params=new URLSearchParams(window.location.search)
 let nama=params.get("nama")
 
 if(nama){
-
 document.getElementById("penerima").innerText="Untuk "+nama
-
 }
 
 </script>
 
 </body>
 </html>
-
-
