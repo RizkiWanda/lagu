@@ -56,6 +56,38 @@ animation:shoot 5s linear infinite;
 100%{transform:translate(-600px,400px);opacity:0;}
 }
 
+/* KETUPAT */
+
+.ketupat{
+position:absolute;
+width:40px;
+height:40px;
+background:green;
+transform:rotate(45deg);
+top:20%;
+left:10%;
+animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0) rotate(45deg);}
+50%{transform:translateY(-20px) rotate(45deg);}
+}
+
+/* AMplop THR */
+
+.thr-drop{
+position:absolute;
+top:-50px;
+font-size:30px;
+animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+0%{top:-50px;}
+100%{top:100vh;}
+}
+
 /* CONTAINER */
 
 .container{
@@ -63,7 +95,7 @@ display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
-padding:10px;
+perspective:1200px;
 }
 
 /* BOOK */
@@ -73,6 +105,7 @@ width:90%;
 max-width:360px;
 height:520px;
 position:relative;
+transform-style:preserve-3d;
 }
 
 /* PAGE */
@@ -89,9 +122,17 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+backface-visibility:hidden;
+transition:1s;
 }
 
-/* FOTO VIA CSS */
+/* FLIP EFFECT */
+
+.flip{
+transform:rotateY(180deg);
+}
+
+/* FOTO */
 
 .foto{
 width:140px;
@@ -106,9 +147,9 @@ box-shadow:0 0 15px rgba(255,255,255,0.6);
 
 /* TEXT */
 
-.page h1{font-size:32px;margin-bottom:10px;}
+.page h1{font-size:32px;}
 .page h2{font-size:26px;}
-.page p{font-size:18px;line-height:1.6;}
+.page p{font-size:18px;}
 
 .hidden{display:none;}
 
@@ -119,8 +160,23 @@ border:none;
 border-radius:12px;
 background:gold;
 font-weight:bold;
-font-size:16px;
 cursor:pointer;
+}
+
+/* KEMBANG API */
+
+.firework{
+position:absolute;
+width:5px;
+height:5px;
+background:yellow;
+border-radius:50%;
+animation:explode 1s ease-out infinite;
+}
+
+@keyframes explode{
+0%{transform:scale(1);opacity:1;}
+100%{transform:scale(10);opacity:0;}
 }
 
 </style>
@@ -136,8 +192,13 @@ cursor:pointer;
 <div class="moon"></div>
 
 <div class="star" style="top:80px; left:80%"></div>
-<div class="star" style="top:150px; left:60%; animation-delay:1s"></div>
-<div class="star" style="top:220px; left:70%; animation-delay:2s"></div>
+
+<div class="ketupat"></div>
+
+<div class="thr-drop" style="left:20%">💸</div>
+<div class="thr-drop" style="left:60%;animation-delay:2s">💸</div>
+
+<div class="firework" style="top:30%;left:50%"></div>
 
 <div class="container">
 
@@ -162,15 +223,8 @@ cursor:pointer;
 
 <h2>Ucapan</h2>
 
-<p>
-Taqabbalallahu minna wa minkum  
-Mohon maaf lahir dan batin.
-</p>
-
-<p>
-Semoga kebahagiaan dan keberkahan  
-senantiasa menyertai kita semua.
-</p>
+<p>Taqabbalallahu minna wa minkum  
+Mohon maaf lahir dan batin.</p>
 
 <button onclick="next2()">Lanjut</button>
 
@@ -181,27 +235,16 @@ senantiasa menyertai kita semua.
 
 <h2>Doa</h2>
 
-<p>
-Semoga Allah menerima amal ibadah kita  
-dan memberikan keberkahan hidup.
-</p>
+<p>Semoga Allah menerima amal ibadah kita</p>
 
 <p>🌙 Eid Mubarak 🌙</p>
 
-<p style="margin-top:15px">
-
-😆 Kalau mau kirim THR boleh juga  
-
+<p>
+😆 Kirim THR ya  
 <br><br>
-
-💳 Rekening  
-<b>7273078244</b>
-
-<br><br>
-
-📱 Dana  
-<b>082273398353</b>
-
+💳 7273078244  
+<br>
+📱 082273398353
 </p>
 
 <button onclick="location.reload()">Tutup</button>
@@ -213,29 +256,27 @@ dan memberikan keberkahan hidup.
 
 <script>
 
-/* HALAMAN + LAGU */
-
-function next1(){
-
+function playMusic(){
 let lagu = document.getElementById("lagu");
-
-/* fade in */
 lagu.volume = 0;
 lagu.play();
 
-let v = 0;
-let fade = setInterval(()=>{
-if(v < 1){
-v += 0.1;
-lagu.volume = v;
+let v=0;
+let fade=setInterval(()=>{
+if(v<1){
+v+=0.1;
+lagu.volume=v;
 }else{
 clearInterval(fade);
 }
 },200);
+}
+
+function next1(){
+playMusic();
 
 document.getElementById("page1").classList.add("hidden");
 document.getElementById("page2").classList.remove("hidden");
-
 }
 
 function next2(){
@@ -243,7 +284,7 @@ document.getElementById("page2").classList.add("hidden");
 document.getElementById("page3").classList.remove("hidden");
 }
 
-/* NAMA OTOMATIS */
+/* NAMA */
 
 const params=new URLSearchParams(window.location.search);
 let nama=params.get("nama");
