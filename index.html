@@ -52,14 +52,8 @@ animation:shoot 5s linear infinite;
 }
 
 @keyframes shoot{
-0%{
-transform:translate(0,0);
-opacity:1;
-}
-100%{
-transform:translate(-600px,400px);
-opacity:0;
-}
+0%{transform:translate(0,0);opacity:1;}
+100%{transform:translate(-600px,400px);opacity:0;}
 }
 
 /* CONTAINER */
@@ -95,7 +89,6 @@ display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-transition:1s;
 }
 
 /* FOTO VIA CSS */
@@ -113,25 +106,11 @@ box-shadow:0 0 15px rgba(255,255,255,0.6);
 
 /* TEXT */
 
-.page h1{
-font-size:34px;
-margin-bottom:10px;
-}
+.page h1{font-size:32px;margin-bottom:10px;}
+.page h2{font-size:26px;}
+.page p{font-size:18px;line-height:1.6;}
 
-.page h2{
-font-size:26px;
-}
-
-.page p{
-font-size:18px;
-line-height:1.6;
-}
-
-/* HIDDEN */
-
-.hidden{
-display:none;
-}
+.hidden{display:none;}
 
 button{
 margin-top:20px;
@@ -149,9 +128,8 @@ cursor:pointer;
 
 <body>
 
-<!-- LAGU -->
-
-<audio autoplay loop>
+<!-- AUDIO -->
+<audio id="lagu" loop>
 <source src="takbiran.mp3" type="audio/mpeg">
 </audio>
 
@@ -166,7 +144,6 @@ cursor:pointer;
 <div class="book">
 
 <!-- PAGE 1 -->
-
 <div class="page" id="page1">
 
 <div class="foto"></div>
@@ -181,7 +158,6 @@ cursor:pointer;
 </div>
 
 <!-- PAGE 2 -->
-
 <div class="page hidden" id="page2">
 
 <h2>Ucapan</h2>
@@ -201,7 +177,6 @@ senantiasa menyertai kita semua.
 </div>
 
 <!-- PAGE 3 -->
-
 <div class="page hidden" id="page3">
 
 <h2>Doa</h2>
@@ -215,7 +190,7 @@ dan memberikan keberkahan hidup.
 
 <p style="margin-top:15px">
 
-Kalau mau kirim THR boleh juga 😆
+😆 Kalau mau kirim THR boleh juga  
 
 <br><br>
 
@@ -238,24 +213,43 @@ Kalau mau kirim THR boleh juga 😆
 
 <script>
 
+/* HALAMAN + LAGU */
+
 function next1(){
-document.getElementById("page1").classList.add("hidden")
-document.getElementById("page2").classList.remove("hidden")
+
+let lagu = document.getElementById("lagu");
+
+/* fade in */
+lagu.volume = 0;
+lagu.play();
+
+let v = 0;
+let fade = setInterval(()=>{
+if(v < 1){
+v += 0.1;
+lagu.volume = v;
+}else{
+clearInterval(fade);
+}
+},200);
+
+document.getElementById("page1").classList.add("hidden");
+document.getElementById("page2").classList.remove("hidden");
+
 }
 
 function next2(){
-document.getElementById("page2").classList.add("hidden")
-document.getElementById("page3").classList.remove("hidden")
+document.getElementById("page2").classList.add("hidden");
+document.getElementById("page3").classList.remove("hidden");
 }
 
 /* NAMA OTOMATIS */
 
-const params=new URLSearchParams(window.location.search)
-
-let nama=params.get("nama")
+const params=new URLSearchParams(window.location.search);
+let nama=params.get("nama");
 
 if(nama){
-document.getElementById("penerima").innerText="Untuk "+nama
+document.getElementById("penerima").innerText="Untuk "+nama;
 }
 
 </script>
