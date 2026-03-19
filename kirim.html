@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Kirim Kartu Idul Fitri</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#0b5c4a;
+color:white;
+text-align:center;
+padding:40px;
+}
+
+input{
+padding:12px;
+font-size:18px;
+border-radius:8px;
+border:none;
+margin:10px;
+}
+
+button{
+padding:12px 20px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:gold;
+cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Kirim Kartu Idul Fitri</h1>
+
+<p>Masukkan nama teman</p>
+
+<input id="nama" placeholder="Nama teman">
+
+<br>
+
+<button onclick="kirim()">Kirim ke WhatsApp</button>
+
+<script>
+
+function kirim(){
+
+let nama=document.getElementById("nama").value
+
+let link="https://rizkiwanda.github.io/lagu/index.html?nama="+encodeURIComponent(nama)
+
+let pesan="🌙 Selamat Hari Raya Idul Fitri\n\nSaya kirimkan kartu ucapan untuk Anda:\n"+link
+
+let wa="https://wa.me/?text="+encodeURIComponent(pesan)
+
+window.open(wa)
+
+}
+
+</script>
+
+</body>
+</html>
