@@ -16,6 +16,41 @@ overflow:hidden;
 text-align:center;
 }
 
+/* SLENGER */
+
+.slenger{
+position:absolute;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-around;
+font-size:22px;
+padding:10px 0;
+animation:turun 2s ease;
+}
+
+@keyframes turun{
+from{transform:translateY(-50px);}
+to{transform:translateY(0);}
+}
+
+/* UMBUL */
+
+.umbul{
+position:absolute;
+top:0;
+width:100%;
+display:flex;
+justify-content:space-evenly;
+font-size:24px;
+animation:ayun 3s infinite alternate;
+}
+
+@keyframes ayun{
+0%{transform:rotate(1deg);}
+100%{transform:rotate(-1deg);}
+}
+
 /* BULAN */
 
 .moon{
@@ -40,7 +75,7 @@ background:#021B2B;
 border-radius:50%;
 }
 
-/* BINTANG */
+/* BINTANG JATUH */
 
 .star{
 position:absolute;
@@ -54,6 +89,52 @@ animation:shoot 5s linear infinite;
 @keyframes shoot{
 0%{transform:translate(0,0);opacity:1;}
 100%{transform:translate(-600px,400px);opacity:0;}
+}
+
+/* KETUPAT */
+
+.ketupat{
+position:absolute;
+font-size:28px;
+animation:goyang 3s infinite;
+}
+
+.k1{top:20%;left:5%;}
+.k2{top:30%;right:5%;}
+
+@keyframes goyang{
+0%,100%{transform:rotate(0deg);}
+50%{transform:rotate(10deg);}
+}
+
+/* MASJID */
+
+.masjid{
+position:absolute;
+bottom:0;
+width:100%;
+height:120px;
+background:black;
+clip-path:polygon(
+0% 100%,10% 60%,20% 100%,30% 50%,40% 100%,
+50% 40%,60% 100%,70% 60%,80% 100%,90% 70%,100% 100%
+);
+opacity:0.6;
+}
+
+/* ORNAMEN JATUH */
+
+.fall{
+position:absolute;
+top:-50px;
+font-size:22px;
+animation:jatuh linear infinite;
+}
+
+@keyframes jatuh{
+0%{transform:translateY(-50px) translateX(0);}
+50%{transform:translateY(50vh) translateX(20px);}
+100%{transform:translateY(110vh) translateX(-20px);}
 }
 
 /* CONTAINER */
@@ -81,17 +162,19 @@ position:relative;
 position:absolute;
 width:100%;
 height:100%;
-background:rgba(255,255,255,0.1);
+background:rgba(255,255,255,0.12);
 border-radius:20px;
 padding:30px;
-backdrop-filter:blur(10px);
+backdrop-filter:blur(12px);
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+border:2px solid rgba(255,255,255,0.2);
+box-shadow:0 0 25px rgba(255,215,0,0.6);
 }
 
-/* FOTO VIA CSS */
+/* FOTO */
 
 .foto{
 width:140px;
@@ -104,11 +187,18 @@ background-position:center;
 box-shadow:0 0 15px rgba(255,255,255,0.6);
 }
 
+/* ICON */
+
+.icon{
+font-size:40px;
+margin-bottom:10px;
+}
+
 /* TEXT */
 
-.page h1{font-size:32px;margin-bottom:10px;}
-.page h2{font-size:26px;}
-.page p{font-size:18px;line-height:1.6;}
+.page h1{font-size:30px;}
+.page h2{font-size:24px;}
+.page p{font-size:18px;}
 
 .hidden{display:none;}
 
@@ -128,16 +218,42 @@ cursor:pointer;
 
 <body>
 
+<!-- SLENGER -->
+<div class="slenger">
+<span>🎊</span><span>🌙</span><span>✨</span><span>🕌</span><span>✨</span><span>🌙</span><span>🎊</span>
+</div>
+
+<!-- UMBUL -->
+<div class="umbul">
+<span>🎐</span><span>🎐</span><span>🎐</span><span>🎐</span><span>🎐</span>
+</div>
+
+<!-- ORNAMEN JATUH -->
+<div class="fall" style="left:10%;animation-duration:6s">💸</div>
+<div class="fall" style="left:25%;animation-duration:8s">🌙</div>
+<div class="fall" style="left:40%;animation-duration:7s">🟩</div>
+<div class="fall" style="left:60%;animation-duration:9s">✨</div>
+<div class="fall" style="left:80%;animation-duration:6s">💸</div>
+
+<div class="fall" style="left:15%;animation-delay:2s;animation-duration:7s">🌙</div>
+<div class="fall" style="left:35%;animation-delay:3s;animation-duration:9s">🟩</div>
+<div class="fall" style="left:55%;animation-delay:1s;animation-duration:6s">💸</div>
+<div class="fall" style="left:75%;animation-delay:2s;animation-duration:8s">✨</div>
+
 <!-- AUDIO -->
 <audio id="lagu" loop>
-<source src="takbiran.mp3" type="audio/mpeg">
+<source src="takbiran.mp3">
 </audio>
 
 <div class="moon"></div>
 
+<div class="ketupat k1">🟩</div>
+<div class="ketupat k2">🟩</div>
+
 <div class="star" style="top:80px; left:80%"></div>
 <div class="star" style="top:150px; left:60%; animation-delay:1s"></div>
-<div class="star" style="top:220px; left:70%; animation-delay:2s"></div>
+
+<div class="masjid"></div>
 
 <div class="container">
 
@@ -145,6 +261,8 @@ cursor:pointer;
 
 <!-- PAGE 1 -->
 <div class="page" id="page1">
+
+<div class="icon">🕌</div>
 
 <div class="foto"></div>
 
@@ -160,16 +278,10 @@ cursor:pointer;
 <!-- PAGE 2 -->
 <div class="page hidden" id="page2">
 
-<h2>Ucapan</h2>
+<div class="icon">🕌</div>
 
 <p>
-Taqabbalallahu minna wa minkum  
-Mohon maaf lahir dan batin.
-</p>
-
-<p>
-Semoga kebahagiaan dan keberkahan  
-senantiasa menyertai kita semua.
+Semoga Allah menerima (amal ibadah) kami dan kamu, Wahai Allah Yang Maha Mulia, terimalah! Dan semoga Allah menjadikan kami dan kamu termasuk orang-orang yang kembali dan orang-orang yang menang serta diterima (amal ibadah). Setiap tahun semoga kamu semua senantiasa dalam kebaikan
 </p>
 
 <button onclick="next2()">Lanjut</button>
@@ -179,31 +291,21 @@ senantiasa menyertai kita semua.
 <!-- PAGE 3 -->
 <div class="page hidden" id="page3">
 
-<h2>Doa</h2>
+<div class="icon">🕌</div>
+
+<h2>
+🌙 Happy Eid Mubarak 🌙
+</h2>
+
+<p> Jangan Lupa 💸 THR nya ya 😆</p>
 
 <p>
-Semoga Allah menerima amal ibadah kita  
-dan memberikan keberkahan hidup.
-</p>
-
-<p>🌙 Eid Mubarak 🌙</p>
-
-<p style="margin-top:15px">
-
-😆 Kalau mau kirim THR boleh juga  
-
+Kirim Kesini Aja ya Siapa Tau Gak ketemu 😆  
 <br><br>
-
-💳 Rekening  
-<b>7273078244</b>
-
-<br><br>
-
-📱 Dana  
-<b>082273398353</b>
-
+💳 7273078244  
+<br>
+📱 082273398353
 </p>
-
 <button onclick="location.reload()">Tutup</button>
 
 </div>
@@ -213,21 +315,18 @@ dan memberikan keberkahan hidup.
 
 <script>
 
-/* HALAMAN + LAGU */
-
 function next1(){
 
-let lagu = document.getElementById("lagu");
+let lagu=document.getElementById("lagu");
 
-/* fade in */
-lagu.volume = 0;
+lagu.volume=0;
 lagu.play();
 
-let v = 0;
-let fade = setInterval(()=>{
-if(v < 1){
-v += 0.1;
-lagu.volume = v;
+let v=0;
+let fade=setInterval(()=>{
+if(v<1){
+v+=0.1;
+lagu.volume=v;
 }else{
 clearInterval(fade);
 }
@@ -242,8 +341,6 @@ function next2(){
 document.getElementById("page2").classList.add("hidden");
 document.getElementById("page3").classList.remove("hidden");
 }
-
-/* NAMA OTOMATIS */
 
 const params=new URLSearchParams(window.location.search);
 let nama=params.get("nama");
